@@ -43,7 +43,7 @@ function App() {
         </div>
       </form>
       <p>{name}</p>
-      {/* <p>{weather.name}</p> */}
+
     </>
   );
 }
