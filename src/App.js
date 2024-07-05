@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 
 const API_KEY = '3d7a17012bef44deac1453d0f9b74f19'
 
+
 function App() {
 
   const [city, setCity] = useState("")
@@ -10,17 +11,17 @@ function App() {
     setCity(e.target.value)
   }
 
-  const handleClick = () => {
-    console.log(city)
-  }
+  const handleClick = (event) => {
+    event.preventDefault()
+    console.log("Searching city: ", city, API_KEY)
 
-  useEffect(() => {
     fetch(`https://api.weatherbit.io/v2.0/forecast/daily?city=${city}&units=I&key=${API_KEY}`)
       .then((response) => response.json())
       .then((data) => {
         console.log(data)
       })
-  })
+  }
+
   return (
     <>
       <h1>Weather App</h1>
@@ -34,7 +35,7 @@ function App() {
             onChange={handleCity}
           />
           <button
-            onClick={handleClick}
+            onClick={e => handleClick(e)}
           >Search</button>
         </div>
       </form>
