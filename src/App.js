@@ -24,18 +24,20 @@ function App() {
   return (
     <>
       <h1>Weather App</h1>
-      <div>
-        <input
-          id="city"
-          type="text"
-          placeholder="enter city"
-          value={city}
-          onChange={handleCity}
-        />
-        <button
-          onClick={handleClick}
-        >Search</button>
-      </div>
+      <form>
+        <div>
+          <input
+            id="city"
+            type="text"
+            placeholder="enter city"
+            value={city}
+            onChange={handleCity}
+          />
+          <button
+            onClick={handleClick}
+          >Search</button>
+        </div>
+      </form>
     </>
   );
 }
