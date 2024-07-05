@@ -1,11 +1,12 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
-const API_KEY = '3d7a17012bef44deac1453d0f9b74f19'
+const API_KEY = 'e6d7ae5f1ecb4b18940c284e8e5da8f9'
 
 
 function App() {
 
   const [city, setCity] = useState("")
+  const [name, setName] = useState("")
 
   const handleCity = e => {
     setCity(e.target.value)
@@ -15,12 +16,14 @@ function App() {
     event.preventDefault()
     console.log("Searching city: ", city, API_KEY)
 
-    fetch(`https://api.weatherbit.io/v2.0/forecast/daily?city=${city}&units=I&key=${API_KEY}`)
+    fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`)
       .then((response) => response.json())
       .then((data) => {
         console.log(data)
+        setName(data.name)
       })
   }
+
 
   return (
     <>
@@ -39,6 +42,8 @@ function App() {
           >Search</button>
         </div>
       </form>
+      <p>{name}</p>
+      {/* <p>{weather.name}</p> */}
     </>
   );
 }
