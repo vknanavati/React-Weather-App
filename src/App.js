@@ -7,6 +7,7 @@ function App() {
 
   const [city, setCity] = useState("")
   const [name, setName] = useState("")
+  const [weather, setWeather] = useState("")
 
   const handleCity = e => {
     setCity(e.target.value)
@@ -16,11 +17,12 @@ function App() {
     event.preventDefault()
     console.log("Searching city: ", city, API_KEY)
 
-    fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`)
+    fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${API_KEY}`)
       .then((response) => response.json())
       .then((data) => {
         console.log(data)
         setName(data.name)
+        setWeather(data)
       })
   }
 
@@ -43,6 +45,7 @@ function App() {
         </div>
       </form>
       <p>{name}</p>
+      <p>{weather.name}</p>
 
     </>
   );
