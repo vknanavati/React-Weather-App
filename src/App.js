@@ -5,9 +5,9 @@ const API_KEY = 'e6d7ae5f1ecb4b18940c284e8e5da8f9'
 
 function App() {
 
-  const [city, setCity] = useState("")
-  const [name, setName] = useState("")
-  const [weather, setWeather] = useState("")
+  const [city, setCity] = useState("");
+  const [name, setName] = useState("");
+  const [weather, setWeather] = useState("");
 
   const handleCity = e => {
     setCity(e.target.value)
@@ -44,8 +44,10 @@ function App() {
           >Search</button>
         </div>
       </form>
-      <p>{name}</p>
       <p>{weather.name}</p>
+      {weather && <p><img src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`} /> </p>}
+      {weather && <p>{weather.weather[0].description}</p>}
+      {weather && <p>{weather.main.temp} °F</p>}
 
     </>
   );
