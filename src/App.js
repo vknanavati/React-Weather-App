@@ -6,7 +6,6 @@ const API_KEY = 'e6d7ae5f1ecb4b18940c284e8e5da8f9'
 function App() {
 
   const [city, setCity] = useState("");
-  const [name, setName] = useState("");
   const [weather, setWeather] = useState("");
 
   const handleCity = e => {
@@ -21,7 +20,6 @@ function App() {
       .then((response) => response.json())
       .then((data) => {
         console.log(data)
-        setName(data.name)
         setWeather(data)
       })
   }
