@@ -7,6 +7,7 @@ console.log(process.env)
 const useStyles = makeStyles({
   weatherData: {
     color:"#6B117D",
+    fontSize: [24, "!important"]
   }
 })
 
@@ -31,8 +32,6 @@ function App() {
         setWeather(data)
       })
   }
-
-
   return (
 
     <Container>
@@ -96,13 +95,13 @@ function App() {
             fontSize={20}
             lineHeight={1}
             >
-          <Typography className={classes.weatherData} sx={{fontSize: 24, marginTop: 1}}>{weather.name}</Typography>
+          <Typography className={classes.weatherData} sx={{ marginTop: 1}}>{weather.name}</Typography>
           <img alt="weather-image" src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`} />
-          <Typography className={classes.weatherData} sx={{fontSize: 24, marginTop:3 }}>{weather.weather[0].description}</Typography>
-          <Typography className={classes.weatherData} sx={{fontSize: 24}}>{weather.main.temp.toFixed(1)} °F</Typography>
+          <Typography className={classes.weatherData} sx={{ marginTop:3 }}>{weather.weather[0].description}</Typography>
+          <Typography className={classes.weatherData}>{weather.main.temp.toFixed(1)} °F</Typography>
         </Box>
 
-        ) }
+        )}
       </Grid>
     </Container>
 
