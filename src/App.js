@@ -1,10 +1,17 @@
 import { useState } from 'react';
 import { Container, Grid, Typography, TextField, Button, Box } from '@mui/material';
+import {makeStyles} from '@mui/styles';
 
 const API_KEY = 'e6d7ae5f1ecb4b18940c284e8e5da8f9'
 
+const useStyles = makeStyles({
+  weatherData: {
+    color:"#6B117D",
+  }
+})
 
 function App() {
+  const classes = useStyles();
 
   const [city, setCity] = useState("");
   const [weather, setWeather] = useState("");
@@ -36,10 +43,10 @@ function App() {
         direction={"column"}
       >
         <Typography
-          variant="h5"
-          sx={{marginTop: 3}}
+          variant="h4"
+          sx={{marginTop: 7, marginBottom: 4, color: "#953ef7"}}
         >
-          Weather App
+          Current Weather
         </Typography>
         <form>
           <Grid
@@ -50,6 +57,12 @@ function App() {
           >
             <Grid item>
               <TextField
+                sx={{
+                  width: 250,
+                  "& .MuiInputBase-root":{
+                    height: 50
+                  }
+                }}
                 id="city"
                 type="text"
                 placeholder="enter city"
@@ -59,26 +72,37 @@ function App() {
             </Grid>
             <Grid item>
               <Button
-                variant="outlined"
+                variant="contained"
+                sx={{backgroundColor: "#953ef7",
+                "&:hover": {
+                  backgroundColor: "#953ef7",
+                }
+                }}
                 onClick={e => handleClick(e)}
               >Search
               </Button>
             </Grid>
           </Grid>
         </form>
-        <Box
-          textAlign={"center"}
-          padding={4}
-          height={250}
-          width={250}
-          borderRadius={5}
-          sx={{marginTop:6, border: 1}}
-          >
-          <p>{weather.name}</p>
-          {weather && <p><img alt="weather-image" src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`} /> </p>}
-          {weather && <p>{weather.weather[0].description}</p>}
-          {weather && <p>{weather.main.temp.toFixed(1)} °F</p>}
+        {weather && (
+          <Box
+            textAlign={"center"}
+            padding={2}
+            height={250}
+            width={250}
+            borderRadius={5}
+            marginTop={6}
+            backgroundColor={"#d6b4fc"}
+            fontSize={20}
+            lineHeight={1}
+            >
+          <Typography className={classes.weatherData} sx={{fontSize: 24, marginTop: 1}}>{weather.name}</Typography>
+          <img alt="weather-image" src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`} />
+          <Typography className={classes.weatherData} sx={{fontSize: 24, marginTop:3 }}>{weather.weather[0].description}</Typography>
+          <Typography className={classes.weatherData} sx={{fontSize: 24}}>{weather.main.temp.toFixed(1)} °F</Typography>
         </Box>
+
+        ) }
       </Grid>
     </Container>
 
