@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Container, Grid, Typography, TextField, Button, Box } from '@mui/material';
 import {makeStyles} from '@mui/styles';
 
-const API_KEY = 'e6d7ae5f1ecb4b18940c284e8e5da8f9'
+console.log(process.env)
 
 const useStyles = makeStyles({
   weatherData: {
@@ -22,9 +22,9 @@ function App() {
 
   const handleClick = (event) => {
     event.preventDefault()
-    console.log("Searching city: ", city, API_KEY)
+    console.log("Searching city: ", city, process.env.REACT_APP_API_KEY)
 
-    fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${API_KEY}`)
+    fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${process.env.REACT_APP_API_KEY}`)
       .then((response) => response.json())
       .then((data) => {
         console.log(data)
