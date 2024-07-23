@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Container, Grid, Typography, TextField, Button, Box } from '@mui/material';
 
 const API_KEY = 'e6d7ae5f1ecb4b18940c284e8e5da8f9'
 
@@ -26,28 +27,62 @@ function App() {
 
 
   return (
-    <>
-      <h1>Weather App</h1>
-      <form>
-        <div>
-          <input
-            id="city"
-            type="text"
-            placeholder="enter city"
-            value={city}
-            onChange={handleCity}
-          />
-          <button
-            onClick={e => handleClick(e)}
-          >Search</button>
-        </div>
-      </form>
-      <p>{weather.name}</p>
-      {weather && <p><img src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`} /> </p>}
-      {weather && <p>{weather.weather[0].description}</p>}
-      {weather && <p>{weather.main.temp} °F</p>}
 
-    </>
+    <Container>
+      <Grid
+        container
+        justifyContent={"center"}
+        alignItems={"center"}
+        direction={"column"}
+      >
+        <Typography
+          variant="h5"
+          sx={{marginTop: 3}}
+        >
+          Weather App
+        </Typography>
+        <form>
+          <Grid
+            container
+            spacing={2}
+            alignItems={"center"}
+            sx={{marginTop: 1}}
+          >
+            <Grid item>
+              <TextField
+                id="city"
+                type="text"
+                placeholder="enter city"
+                value={city}
+                onChange={handleCity}
+              />
+            </Grid>
+            <Grid item>
+              <Button
+                variant="outlined"
+                onClick={e => handleClick(e)}
+              >Search
+              </Button>
+            </Grid>
+          </Grid>
+        </form>
+        <Box
+          textAlign={"center"}
+          padding={4}
+          height={250}
+          width={250}
+          borderRadius={5}
+          sx={{marginTop:6, border: 1}}
+          >
+          <p>{weather.name}</p>
+          {weather && <p><img alt="weather-image" src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`} /> </p>}
+          {weather && <p>{weather.weather[0].description}</p>}
+          {weather && <p>{weather.main.temp.toFixed(1)} °F</p>}
+        </Box>
+      </Grid>
+    </Container>
+
+
   );
 }
 
