@@ -100,7 +100,6 @@ function App() {
           <Typography className={classes.weatherData} sx={{ marginTop:3 }}>{weather.weather[0].description}</Typography>
           <Typography className={classes.weatherData}>{weather.main.temp.toFixed(1)} °F</Typography>
         </Box>
-
         )}
       </Grid>
     </Container>
